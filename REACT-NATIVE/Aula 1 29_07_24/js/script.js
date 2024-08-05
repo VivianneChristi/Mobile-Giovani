@@ -1,68 +1,65 @@
-const nome = document.querySelector("#nome");
-const email = document.querySelector("#email");
-const idade = document.querySelector("#idade");
-const telefone = document.querySelector("#telefone");
-const button = document.querySelector("button");
-const lista = document.querySelector(".lista");
+document.addEventListener('DOMContentLoaded', () => {
+  // Seleciona o formulário e a lista onde os usuários serão adicionados
+  const form = document.getElementById('user-form');
+  const lista = document.querySelector('.lista');
+  const telefoneInput = document.getElementById('telefone');
 
-button.addEventListener("click", (e) => {
-  e.preventDefault();
+  // Adiciona um ouvinte de evento para o envio do formulário
+  form.addEventListener('submit', (e) => {
+      e.preventDefault(); // Previne o comportamento padrão de envio do formulário
 
-  const inputNameValue = nome.value;
-  const inputEmailValue = email.value;
-  const inputAgeValue = idade.value;
-  const inputPhoneValue = telefone.value;
+      // Obtém os valores dos campos do formulário
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const idade = document.getElementById('idade').value;
+      const telefone = telefoneInput.value;
 
-  const templateHTML = `
-    <li>
-      <div>
-        <strong>Nome:</strong> ${inputNameValue} <br>
-        <strong>Email:</strong> ${inputEmailValue} <br>
-        <strong>Idade:</strong> ${inputAgeValue} <br>
-        <strong>Telefone:</strong> ${inputPhoneValue}
-      </div>
-      <button class="delete-button"><img src="./img/icon_lixeira.png" alt="Deletar" class="delete-icon"></button>
-    </li>
-  `;
+      // Valida se todos os campos estão preenchidos
+      if (!nome || !email || !idade || !telefone) {
+          alert('Por favor, preencha todos os campos corretamente.');
+          return;
+      }
 
-  if (inputNameValue === "" || inputEmailValue === "" || inputAgeValue === "" || inputPhoneValue === "") {
-    alert("Por favor, preencha todos os campos corretamente.");
-    return false;
-  }
+      // Cria um novo item de usuário com os valores fornecidos
+      const userItem = document.createElement('li');
+      userItem.innerHTML = `
+          <div>
+              <strong>Nome:</strong> ${nome} <br>
+              <strong>Email:</strong> ${email} <br>
+              <strong>Idade:</strong> ${idade} <br>
+              <strong>Telefone:</strong> ${telefone}
+          </div>
+          <button class="delete-button">
+              <img src="./img/icon_lixeira.png" alt="Deletar" class="delete-icon">
+          </button>
+      `;
+      
+      // Adiciona o novo item à lista
+      lista.appendChild(userItem);
 
-  lista.innerHTML += templateHTML;
+      // Adiciona um ouvinte de evento ao botão de deletar
+      userItem.querySelector('.delete-button').addEventListener('click', () => {
+          userItem.remove(); // Remove o item da lista
+      });
 
-  const deleteButtons = document.querySelectorAll(".delete-button");
-  deleteButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.target.closest('li').remove();
-    });
+      // Limpa os campos do formulário após a submissão
+      form.reset();
   });
 
-  nome.value = "";
-  idade.value = "";
-  telefone.value = "";
-});
+  // Adiciona um ouvinte de evento para formatar o número de telefone enquanto o usuário digita
+  telefoneInput.addEventListener('input', (e) => {
+      let valor = e.target.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
 
-document.addEventListener('DOMContentLoaded', function() {
-  const inputTelefone = document.getElementById('telefone');
- 
-  inputTelefone.addEventListener('input', function(e) {
-    let valor = e.target.value;
-   
-    // Remove todos os caracteres não numéricos
-    valor = valor.replace(/\D/g, '');
-   
-    // Formata o número de telefone
-    if (valor.length > 6) {
-      valor = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-    } else if (valor.length > 2) {
-      valor = valor.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
-    } else {
-      valor = valor.replace(/^(\d*)$/, '($1');
-    }
-   
-    // Atualiza o valor do input com a formatação
-    e.target.value = valor;
+      // Formata o número de telefone conforme o comprimento do valor
+      if (valor.length > 6) {
+          valor = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+      } else if (valor.length > 2) {
+          valor = valor.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
+      } else {
+          valor = valor.replace(/^(\d*)$/, '($1');
+      }
+
+      // Atualiza o valor do input com a formatação
+      e.target.value = valor;
   });
 });
