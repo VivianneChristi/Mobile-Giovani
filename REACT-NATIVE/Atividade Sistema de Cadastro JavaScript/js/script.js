@@ -1,6 +1,6 @@
 const nome = document.querySelector("#nome");
 const email = document.querySelector("#email");
-const idade = document.querySelector("#idade");
+const nascimento = document.querySelector("#nascimento");
 const telefone = document.querySelector("#telefone");
 const button = document.querySelector("button");
 const lista = document.querySelector(".lista");
@@ -10,25 +10,27 @@ button.addEventListener("click", (e) => {
 
   const inputNameValue = nome.value;
   const inputEmailValue = email.value;
-  const inputAgeValue = idade.value;
+  const inputNascimentoValue = nascimento.value;
   const inputPhoneValue = telefone.value;
 
+  if (inputNameValue === "" || inputEmailValue === "" || inputNascimentoValue === "" || inputPhoneValue === "") {
+    alert("Por favor, preencha todos os campos corretamente.");
+    return false;
+  }
+
+  const idade = calcularIdade(new Date(inputNascimentoValue));
+  
   const templateHTML = `
     <li>
       <div>
         <strong>Nome:</strong> ${inputNameValue} <br>
         <strong>Email:</strong> ${inputEmailValue} <br>
-        <strong>Idade:</strong> ${inputAgeValue} <br>
+        <strong>Idade:</strong> ${idade} <br>
         <strong>Telefone:</strong> ${inputPhoneValue}
       </div>
       <button class="delete-button"><img src="./img/icon_lixeira.png" alt="Deletar" class="delete-icon"></button>
     </li>
   `;
-
-  if (inputNameValue === "" || inputEmailValue === "" || inputAgeValue === "" || inputPhoneValue === "") {
-    alert("Por favor, preencha todos os campos corretamente.");
-    return false;
-  }
 
   lista.innerHTML += templateHTML;
 
@@ -41,9 +43,21 @@ button.addEventListener("click", (e) => {
 
   nome.value = "";
   email.value = "";
-  idade.value = "";
+  nascimento.value = "";
   telefone.value = "";
 });
+
+function calcularIdade(dataNascimento) {
+  const hoje = new Date();
+  const anoAtual = hoje.getFullYear();
+  let idade = anoAtual - dataNascimento.getFullYear();
+  const mesAtual = hoje.getMonth();
+  const diaAtual = hoje.getDate();
+  if (mesAtual < dataNascimento.getMonth() || (mesAtual === dataNascimento.getMonth() && diaAtual < dataNascimento.getDate())) {
+    idade--;
+  }
+  return idade;
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   const inputTelefone = document.getElementById('telefone');
