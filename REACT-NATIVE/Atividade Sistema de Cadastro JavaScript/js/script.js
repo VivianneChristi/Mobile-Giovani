@@ -40,6 +40,7 @@ button.addEventListener("click", (e) => {
   });
 
   nome.value = "";
+  email.value = "";
   idade.value = "";
   telefone.value = "";
 });
