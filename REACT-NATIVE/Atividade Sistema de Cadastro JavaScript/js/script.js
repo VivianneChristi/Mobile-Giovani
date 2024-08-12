@@ -4,6 +4,7 @@ const nascimento = document.querySelector("#nascimento");
 const telefone = document.querySelector("#telefone");
 const button = document.querySelector("button");
 const lista = document.querySelector(".lista");
+const emailError = document.querySelector("#email-error");
 
 button.addEventListener("click", (e) => {
   e.preventDefault();
@@ -16,6 +17,13 @@ button.addEventListener("click", (e) => {
   if (inputNameValue === "" || inputEmailValue === "" || inputNascimentoValue === "" || inputPhoneValue === "") {
     alert("Por favor, preencha todos os campos corretamente.");
     return false;
+  }
+
+  if (!isValidEmail(inputEmailValue)) {
+    emailError.style.display = "block";
+    return false;
+  } else {
+    emailError.style.display = "none";
   }
 
   const idade = calcularIdade(new Date(inputNascimentoValue));
@@ -46,6 +54,11 @@ button.addEventListener("click", (e) => {
   nascimento.value = "";
   telefone.value = "";
 });
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
 
 function calcularIdade(dataNascimento) {
   const hoje = new Date();
