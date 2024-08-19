@@ -1,0 +1,33 @@
+/* banner.css */
+
+.banner {
+    background-color: #ffd700; /* Cor dourada */
+    background-image: url('https://casembrapa.com.br/storage/app/public/inserted_files/2024/07/semana-da-amamentacao-agosto-2024-site.jpg'); /* Substitua pelo caminho da imagem desejada */
+    background-size: cover;
+    background-position: center;    
+    height: 300px; /* Ajuste conforme necessário */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .banner__container {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para melhor legibilidade */
+    border-radius: 10px;
+  }
+  
+  .banner__title {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  
+  .banner__subtitle {
+    font-size: 20px;
+    color: white;
+  }
+  

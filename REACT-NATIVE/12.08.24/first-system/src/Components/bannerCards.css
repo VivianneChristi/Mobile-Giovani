@@ -1,0 +1,22 @@
+.banner_cards {
+    border: 1px solid white;
+    margin: auto;
+    max-width: 1000px;
+    height: 110px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-image: url('https://img.freepik.com/fotos-gratis/vazio-salvar-textura-sala-luz_1258-175.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1724025600&semt=ais_hybrid');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.banner_cards h1 {
+    color: white;
+}
+ 
+.banner_cards h2 {
+    color: white;
+    font-size: 15px;
+}
