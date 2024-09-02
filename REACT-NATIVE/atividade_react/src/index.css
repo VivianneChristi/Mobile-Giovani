@@ -1,0 +1,79 @@
+/* src/styles/global.css */
+
+/* Variáveis de Cores */
+:root {
+  --cor-fundo: #f4f4f4; /* Cor de fundo geral */
+  --cor-fonte: #333333; /* Cor do texto principal */
+  --cor-destaque-fundo: #e0e0e0; /* Cor de fundo para seções destacadas */
+  --cor-de-fundo: #ffffff; /* Cor de fundo para o footer */
+  --cor-botao: #2A7AE4; /* Cor dos botões */
+}
+
+/* Estilos Gerais */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--cor-fundo);
+  color: var(--cor-fonte);
+}
+
+a {
+  text-decoration: none;
+  color: var(--cor-fonte);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Reset de Estilos */
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+input, textarea {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Layout */
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Outros Estilos Globais */
+header, main, footer {
+  padding: 20px 0;
+}
+
+/* Exemplo de Estilo de Botão */
+button {
+  background-color: var(--cor-botao);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #1a5bb8;
+}

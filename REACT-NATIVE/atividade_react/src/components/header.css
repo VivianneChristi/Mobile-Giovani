@@ -1,0 +1,43 @@
+/* src/styles/header.css */
+
+/* Menu */
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 75%;
+    height: 25px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 32px;
+}
+
+.menu__logo {
+    display: flex;
+    align-items: center;
+}
+
+.menu__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 32px;
+}
+
+.menu__item {
+    margin: 0;
+}
+
+.menu__item--contato {
+    margin-left: auto;
+    font-weight: bold;
+}
+
+.menu__title {
+    margin: 0;
+}
+
+.menu__img {
+    margin-right: 25px;
+}
